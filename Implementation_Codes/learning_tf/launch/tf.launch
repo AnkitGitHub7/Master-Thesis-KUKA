@@ -1,0 +1,5 @@
+<launch>
+  <node pkg="learning_tf" type="my_node" name="PoseUpdate" output="screen"/>
+  <node pkg="learning_tf" type="laser_filter_multi_with_class" name="subscribe_and_publish" output="screen"/>
+  <node pkg="learning_tf" type="my_node1" name="PoseUpdate1" output="screen"/>
+</launch>

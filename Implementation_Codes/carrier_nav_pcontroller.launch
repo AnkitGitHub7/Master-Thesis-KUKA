@@ -1,0 +1,47 @@
+<launch>
+  <node pkg="nav_pcontroller" type="nav_pcontroller" name="nav_pcontroller" output="screen">
+    <remap from="~laser_1" to="/scan"/>
+    <remap from="~goal" to="/move_base_simple/goal"/>
+    <rosparam>
+      global_frame: map
+      odom_frame: odom
+      base_link_frame: base_link
+
+      keep_distance: false                 # avoid obstacles?
+
+      n_lasers: 1                         # number of lasers on robot's base
+
+      footprint:                          # measurements of robot's footprint (radii) [m]
+        front: 0.44
+        rear: -0.38
+        right: -0.26
+        left: 0.26
+        tolerance: 0.0                    # error in the footprint measurements [m]
+
+      slowdown_far: 0.05                 # distance at which to start slowing down [m]
+      slowdown_near: 0.01                 # distance to slow down aggressively [m]
+      safety_dist: 0.01                   # distance at which to brake [m]
+      repelling_dist: 0.10                # distance at which to start backing up [m]
+      repelling_gain: 0.5                 # gain for repelling speed
+      repelling_gain_max: 0.015
+
+      complete_blind_spots: false        # interpolate the angles in blind spots?
+
+      marker_size: 0.1                   # Rviz marker size [m]
+
+      xy_tolerance: 0.001                  # goal distance tolerance
+      th_tolerance: 0.001                 # goal rotation tolerance
+
+      vel_lin_max: 0.25                  # maximum linear velocity [m/s]
+      vel_ang_max: 0.25                  # maximum angular velocity [rad/s]
+      acc_lin_max: 0.4                   # maximum linear acceleration [m/s^2]
+      acc_ang_max: 0.2                   # maximum angular acceleration [rad/s^2]
+
+      loop_rate: 60                      # control loop rate [1/s]
+
+      p: 0.9                             # P controller value
+
+      speed_filter_name: /nav_pcontroller
+    </rosparam>
+  </node>
+</launch>
